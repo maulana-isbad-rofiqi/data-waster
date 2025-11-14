@@ -1,0 +1,9 @@
+name = "data-waster"
+compatibility_date = "2025-11-14"
+
+[site]
+bucket = "./public"
+
+kv_namespaces = [
+  { binding = "LOGS", id = "YOUR_KV_NAMESPACE_ID" }
+]

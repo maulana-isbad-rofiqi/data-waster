@@ -1,0 +1,8 @@
+{
+  "name": "data-waster-cloudflare",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler pages dev public"
+  }
+}

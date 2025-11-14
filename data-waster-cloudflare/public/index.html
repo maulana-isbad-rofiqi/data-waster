@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Data Waster</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#121217">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="/styles.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <header><h1 id="page-title">Beranda</h1></header>
+    <main id="page-home">
+      <section class="splash">
+        <div class="logo" aria-hidden="true"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="30" fill="#7a4d10"/><path d="M32 14a18 18 0 1 0 12.727 30.728l-3.182-2.919A13.5 13.5 0 1 1 32 18v-4z" fill="#fff"/></svg></div>
+        <div class="title-main">Data Waster</div>
+        <div class="subtitle">Konsumsi Data Jaringan</div>
+      </section>
+      <section class="content">
+        <div class="card status-card">
+          <div class="status-row">
+            <div class="status-left">
+              <div class="label">Status</div>
+              <div id="statusText" class="status stopped">Berhenti</div>
+            </div>
+            <div class="status-right">
+              <div class="label">Thread</div>
+              <div class="thread-count">Threads : <span id="threadCount">5</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Kecepatan Jaringan</div>
+          <div class="chart-wrapper"><canvas id="netChart" aria-label="Grafik kecepatan jaringan"></canvas></div>
+          <div class="chart-legend"><div><span class="swatch green"></span><small>Unduh</small></div><div><span class="swatch orange"></span><small>Unggah</small></div></div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="icon">⬇️</div><div class="label">Unduh</div><div id="downValue" class="value">0 B/s</div></div>
+          <div class="metric"><div class="icon">⬆️</div><div class="label">Unggah</div><div id="upValue" class="value">0 B/s</div></div>
+        </div>
+        <div class="total-card"><div><div class="total-label">Total Data yang Dikonsumsi</div><div id="totalValue" class="total-value">0 B</div></div>
+        <button id="controlBtn" class="fab primary" aria-pressed="false">Mulai ▶</button></div>
+      </section>
+    </main>
+    <main id="page-console" class="page" hidden>
+      <h2>Konsol</h2>
+      <div class="console-top">
+        <div class="filters"><button class="pill active">Semua</button><button class="pill">Info</button><button class="pill">Peringatan</button><button class="pill">Kesalahan</button><button class="pill">Berhasil</button></div>
+        <div class="controls"><button id="clearLog" class="btn">Hapus Log</button><button id="exportLog" class="btn primary">Ekspor Log</button></div>
+      </div>
+      <div id="logs" class="logs" aria-live="polite"></div>
+    </main>
+    <main id="page-settings" class="page" hidden>
+      <h2>Pengaturan</h2>
+      <div class="card"><div class="section"><div class="label">Pengaturan Jaringan</div><div>Jumlah Thread</div>
+      <div class="slider-row"><input type="range" id="threadsRange" min="1" max="20" value="5" /><div id="threadsDisplay" class="threadsDisplay">5</div></div></div>
+      <div class="section"><div class="label">Pengaturan Aplikasi</div><div class="row-space"><label>Mulai Otomatis <input type="checkbox" id="autoStart" /></label><label>Layar Selalu Aktif <input type="checkbox" id="keepOn" /></label></div>
+      <div class="row-space"><div>Tema</div><button class="pill">Sistem</button></div></div>
+      <div class="section"><div class="label">Bahasa</div><div class="checkbox-list"><label><input type="checkbox" checked/> Sistem</label><label><input type="checkbox"/> English</label><label><input type="checkbox"/> Indonesia</label><label><input type="checkbox"/> Español</label><label><input type="checkbox"/> Português</label><label><input type="checkbox"/> 中文</label></div></div></div>
+    </main>
+    <main id="page-about" class="page" hidden>
+      <h2>Tentang</h2>
+      <div class="card" style="padding:16px;line-height:1.6">
+        <p class="muted">Data Waster adalah aplikasi berbasis web yang mensimulasikan konsumsi data jaringan dan menampilkan aktivitas jaringan secara real-time.</p>
+        <h3>Tujuan Proyek</h3><p class="muted">Alat pembelajaran, eksperimen UI/UX, demonstrasi integrasi frontend–backend, dan PWA.</p>
+        <h3>Fitur Utama</h3><ul class="muted" style="margin-left:18px"><li>Simulasi unduh & unggah</li><li>Grafik real-time (Chart.js)</li><li>Konsol log & persistensi kv</li><li>PWA installable</li></ul>
+        <h3>Kontak</h3><p class="muted">Email: <a href="mailto:dev@example.com" style="color:#6c9cff">dev@example.com</a></p>
+      </div>
+    </main>
+    <button id="stopFab" class="fab secondary" hidden>■ Hentikan</button>
+    <nav class="bottom-nav" role="navigation" aria-label="Navigasi"><div class="nav-bar" role="tablist"><button class="nav-item active" data-page="home">🏠<span>Beranda</span></button><button class="nav-item" data-page="console">🖥️<span>Konsol</span></button><button class="nav-item" data-page="settings">⚙️<span>Pengaturan</span></button><button class="nav-item" data-page="about">ℹ️<span>Tentang</span></button></div></nav>
+  </div>
+  <script src="/app.min.js"></script>
+</body>
+</html>
